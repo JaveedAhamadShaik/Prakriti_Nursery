@@ -8,7 +8,7 @@ import { comprehensiveIndoorPlants } from "@/data/comprehensive-products";
 
 const IndoorPlants = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const categories = ["All", "Leafy", "Flowering", "Bonsai", "Succulents"];
+  const categories = ["All", "Foliage", "Flowering", "Bonsai", "Succulents"];
   
   // Scroll to top when component mounts
   useEffect(() => {

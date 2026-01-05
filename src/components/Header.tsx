@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ShoppingCart, User, Menu, Heart, LogOut, X } from "lucide-react";
+import { ShoppingCart, User, Menu, Heart, LogOut, X, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/contexts/CartContext";
@@ -29,6 +29,11 @@ const Header = () => {
   const handleLogout = async () => {
     await signOut();
     navigate('/auth');
+  };
+
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+    window.scrollTo(0, 0);
   };
 
   const plantsLinks = [
@@ -200,6 +205,15 @@ const Header = () => {
             </motion.div>
           </a>
 
+          {/* Order Tracking */}
+          <Link to="/order-tracking">
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <Button variant="ghost" size="icon" className="hidden sm:flex h-9 w-9">
+                <Package className="h-5 w-5" />
+              </Button>
+            </motion.div>
+          </Link>
+
           <Link to="/favorites">
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
               <Button variant="ghost" size="icon" className="hidden sm:flex h-9 w-9">
@@ -274,7 +288,7 @@ const Header = () => {
                       <Link
                         key={link.title}
                         to={link.href}
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={handleNavClick}
                         className="block py-2 text-foreground hover:text-primary transition-colors"
                       >
                         {link.title}
@@ -289,7 +303,7 @@ const Header = () => {
                       <Link
                         key={link.title}
                         to={link.href}
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={handleNavClick}
                         className="block py-2 text-foreground hover:text-primary transition-colors"
                       >
                         {link.title}
@@ -304,7 +318,7 @@ const Header = () => {
                       <Link
                         key={link.title}
                         to={link.href}
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={handleNavClick}
                         className="block py-2 text-foreground hover:text-primary transition-colors"
                       >
                         {link.title}
@@ -319,12 +333,24 @@ const Header = () => {
                       <Link
                         key={link.title}
                         to={link.href}
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={handleNavClick}
                         className="block py-2 text-foreground hover:text-primary transition-colors"
                       >
                         {link.title}
                       </Link>
                     ))}
+                  </div>
+
+                  {/* Order Tracking Link */}
+                  <div className="px-4 mb-4">
+                    <Link
+                      to="/order-tracking"
+                      onClick={handleNavClick}
+                      className="flex items-center gap-2 py-2 text-foreground hover:text-primary transition-colors font-medium"
+                    >
+                      <Package className="h-4 w-4" />
+                      Track Your Order
+                    </Link>
                   </div>
                 </div>
 
@@ -336,14 +362,14 @@ const Header = () => {
                         <InstagramIcon className="h-5 w-5" />
                       </Button>
                     </a>
-                    <Link to="/favorites" onClick={() => setMobileMenuOpen(false)}>
+                    <Link to="/favorites" onClick={handleNavClick}>
                       <Button variant="ghost" size="icon">
                         <Heart className="h-5 w-5" />
                       </Button>
                     </Link>
                     {user ? (
                       <>
-                        <Link to="/profile" onClick={() => setMobileMenuOpen(false)}>
+                        <Link to="/profile" onClick={handleNavClick}>
                           <Button variant="ghost" size="icon">
                             <User className="h-5 w-5" />
                           </Button>
@@ -353,7 +379,7 @@ const Header = () => {
                         </Button>
                       </>
                     ) : (
-                      <Link to="/auth" onClick={() => setMobileMenuOpen(false)}>
+                      <Link to="/auth" onClick={handleNavClick}>
                         <Button variant="ghost" size="icon">
                           <User className="h-5 w-5" />
                         </Button>

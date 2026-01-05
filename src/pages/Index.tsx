@@ -9,9 +9,9 @@ import { motion } from "framer-motion";
 
 import heroImage from "@/assets/hero-garden.jpg";
 import indoorHero from "@/assets/showcase/indoor-hero.jpg";
-import potsHero from "@/assets/showcase/pots-hero.jpg";
+import potsHero from "@/assets/showcase/pots-hero.png";
 import accessoriesHero from "@/assets/showcase/accessories-hero.jpg";
-import peaceLily from "@/assets/plants/peace-lily.png";
+import peaceLily from "@/assets/plants/peace-lily.jpg";
 
 const Index = () => {
   useEffect(() => {
