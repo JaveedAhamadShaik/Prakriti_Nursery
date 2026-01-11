@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { ThemeToggle } from "./ThemeToggle";
-import { SearchBar } from "./SearchBar"; // Import the SearchBar component
+import { SearchBar } from "./SearchBar";
 import logo from "@/assets/logo.jpg";
 import { motion } from "framer-motion";
 import {
@@ -79,11 +79,11 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="container flex h-16 sm:h-20 items-center justify-between gap-2 sm:gap-4 px-4 sm:px-6">
+      <div className="container flex h-16 sm:h-20 items-center justify-between gap-1.5 sm:gap-4 px-3 sm:px-6">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity flex-shrink-0">
-          <img src={logo} alt="PRAKRITI NURSERY" className="h-10 w-10 sm:h-12 sm:w-12 rounded-full object-cover" />
-          <span className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-leaf-green hidden xs:block tracking-tight whitespace-nowrap">PRAKRITI NURSERY</span>
+        <Link to="/" className="flex items-center gap-1.5 sm:gap-3 hover:opacity-80 transition-opacity flex-shrink-0">
+          <img src={logo} alt="PRAKRITI NURSERY" className="h-9 w-9 sm:h-12 sm:w-12 rounded-full object-cover" />
+          <span className="text-base sm:text-xl lg:text-2xl font-display font-bold text-leaf-green hidden xs:block tracking-tight whitespace-nowrap">PRAKRITI NURSERY</span>
         </Link>
         
         {/* Desktop Navigation */}
@@ -196,12 +196,12 @@ const Header = () => {
         </NavigationMenu>
 
         {/* Search Bar - Visible on all screens */}
-        <div className="flex flex-1 max-w-xs sm:max-w-sm lg:max-w-md mx-2 sm:mx-4">
+        <div className="flex flex-1 max-w-[140px] sm:max-w-sm lg:max-w-md mx-1 sm:mx-4">
           <SearchBar />
         </div>
 
         {/* Right Side Icons */}
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-0.5 sm:gap-2">
           {/* Instagram Icon */}
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
@@ -257,10 +257,10 @@ const Header = () => {
 
           <Link to="/cart">
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="ghost" size="icon" className="relative h-9 w-9">
-                <ShoppingCart className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="relative h-8 w-8 sm:h-9 sm:w-9">
+                <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5" />
                 {cartCount > 0 && (
-                  <Badge className="absolute -top-1 -right-1 h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center p-0 text-xs bg-secondary text-secondary-foreground">
+                  <Badge className="absolute -top-1 -right-1 h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center p-0 text-[10px] sm:text-xs bg-secondary text-secondary-foreground">
                     {cartCount}
                   </Badge>
                 )}
@@ -271,8 +271,8 @@ const Header = () => {
           {/* Mobile Menu */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden h-9 w-9">
-                <Menu className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="lg:hidden h-8 w-8 sm:h-9 sm:w-9">
+                <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] sm:w-[320px] p-0">
