@@ -104,26 +104,25 @@
 }
 
 /* =========================================================
-   IMAGE PERFECT FIT SYSTEM
+   IMAGE PERFECT FIT SYSTEM (FIXED – FULL BLEED)
    ========================================================= */
 
 @layer components {
   /* Product image container */
   .product-image-wrapper {
-    @apply w-full bg-white rounded-xl overflow-hidden flex items-center justify-center relative;
+    @apply w-full relative overflow-hidden rounded-xl bg-white;
     aspect-ratio: 1 / 1;
   }
 
-  /* Product image */
+  /* Product image – FULL FIT */
   .product-image-wrapper img {
-    @apply max-w-full max-h-full object-contain;
-    padding: 0.75rem;
+    @apply w-full h-full object-cover block;
   }
 
-  /* Hover zoom */
+  /* Smooth hover zoom */
   .product-image-wrapper:hover img {
     transform: scale(1.05);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease-in-out;
   }
 }
 
@@ -158,7 +157,7 @@
     @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
   }
 
-  /* Padding */
+  /* Container padding */
   .container-padding {
     @apply px-4 sm:px-6 lg:px-8;
   }
@@ -201,11 +200,8 @@
     display: none;
   }
 
-  /* =========================================================
-     🔥 FIX: NAVIGATION SCROLL OFFSET
-     ========================================================= */
-
+  /* Navigation offset */
   .scroll-offset {
-    scroll-margin-top: 90px; /* fixed navbar height */
+    scroll-margin-top: 90px;
   }
 }

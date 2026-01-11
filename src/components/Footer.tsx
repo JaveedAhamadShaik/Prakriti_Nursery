@@ -19,16 +19,21 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 const Footer = () => {
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="border-t border-border bg-muted/30 mt-12 sm:mt-20">
       <div className="container py-8 sm:py-12 px-4 sm:px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
+            <Link to="/" onClick={scrollToTop} className="flex items-center gap-2 mb-4 w-fit hover:opacity-80 transition-opacity">
               <img src={logo} alt="PRAKRITI NURSERY" className="h-10 w-10 rounded-full object-cover" />
               <span className="text-lg sm:text-xl font-bold text-primary">PRAKRITI NURSERY</span>
-            </div>
+            </Link>
             <p className="text-sm text-muted-foreground mb-4">
               Your trusted partner in bringing nature home. Quality plants, expert care tips, and sustainable practices.
             </p>
@@ -38,6 +43,7 @@ const Footer = () => {
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                aria-label="Contact us on WhatsApp"
               >
                 <WhatsAppIcon className="h-4 w-4 text-primary" />
               </a>
@@ -46,6 +52,7 @@ const Footer = () => {
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                aria-label="Follow us on Instagram"
               >
                 <InstagramIcon className="h-4 w-4 text-primary" />
               </a>
@@ -57,22 +64,38 @@ const Footer = () => {
             <h3 className="font-semibold text-foreground mb-4">Shop</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/indoor-plants" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link 
+                  to="/indoor-plants" 
+                  onClick={scrollToTop}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Indoor Plants
                 </Link>
               </li>
               <li>
-                <Link to="/corporate-gifting" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link 
+                  to="/corporate-gifting" 
+                  onClick={scrollToTop}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Corporate/Bulk Gifting
                 </Link>
               </li>
               <li>
-                <Link to="/pots" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link 
+                  to="/pots" 
+                  onClick={scrollToTop}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Pots & Planters
                 </Link>
               </li>
               <li>
-                <Link to="/accessories" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link 
+                  to="/accessories" 
+                  onClick={scrollToTop}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Accessories
                 </Link>
               </li>
@@ -84,24 +107,40 @@ const Footer = () => {
             <h3 className="font-semibold text-foreground mb-4">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/plant-database" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link 
+                  to="/plant-database" 
+                  onClick={scrollToTop}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Plant Database
                 </Link>
               </li>
               <li>
-                <Link to="/what-we-do" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link 
+                  to="/what-we-do" 
+                  onClick={scrollToTop}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   What We Do
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link 
+                  to="/care-guides" 
+                  onClick={scrollToTop}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Care Guides
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link 
+                  to="/about" 
+                  onClick={scrollToTop}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   About Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -116,18 +155,28 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                <a href="tel:+918137664998" className="hover:text-primary transition-colors">+91 8317664998</a>
+                <a 
+                  href="tel:+918317664998" 
+                  className="hover:text-primary transition-colors"
+                >
+                  +91 8317664998
+                </a>
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                <a href="mailto:prakritinursery123@gmail.com" className="hover:text-primary transition-colors break-all">prakritinursery123@gmail.com</a>
+                <a 
+                  href="mailto:prakritinursery123@gmail.com" 
+                  className="hover:text-primary transition-colors break-all"
+                >
+                  prakritinursery123@gmail.com
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; 2026 PRAKRITI NURSERY. All rights reserved. Bringing nature to your doorstep.</p>
+          <p>&copy; {new Date().getFullYear()} PRAKRITI NURSERY. All rights reserved. Bringing nature to your doorstep.</p>
         </div>
       </div>
     </footer>
