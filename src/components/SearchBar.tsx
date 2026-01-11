@@ -27,7 +27,7 @@ interface GroupedResults {
 const getAllSearchableData = (): SearchItem[] => {
   const allItems: SearchItem[] = [];
 
-  // INDOOR PLANTS - Foliage (61 items)
+// ===== INDOOR PLANTS - FOLIAGE (61 items) =====
   const foliagePlants = [
     { id: "ip-001", name: "Monstera Deliciosa", price: 450, subcategory: "Foliage" },
     { id: "ip-002", name: "Snake Plant", price: 300, subcategory: "Foliage" },
@@ -89,7 +89,11 @@ const getAllSearchableData = (): SearchItem[] => {
     { id: "ip-083", name: "Anthurium Jungle King", price: 799, subcategory: "Foliage" },
   ];
 
-  // INDOOR PLANTS - Flowering (5 items)
+  foliagePlants.forEach(plant => {
+    allItems.push({ ...plant, category: "Indoor Plants", link: `/indoor-plants?id=${plant.id}` });
+  });
+
+  // ===== INDOOR PLANTS - FLOWERING (5 items) =====
   const floweringPlants = [
     { id: "ip-019", name: "Anthurium", price: 699, subcategory: "Flowering" },
     { id: "ip-020", name: "Peace Lily", price: 349, subcategory: "Flowering" },
@@ -98,7 +102,11 @@ const getAllSearchableData = (): SearchItem[] => {
     { id: "ip-088", name: "Heliconia", price: 249, subcategory: "Flowering" },
   ];
 
-  // INDOOR PLANTS - Bonsai (5 items)
+  floweringPlants.forEach(plant => {
+    allItems.push({ ...plant, category: "Indoor Plants", link: `/indoor-plants?id=${plant.id}` });
+  });
+
+  // ===== INDOOR PLANTS - BONSAI (5 items) =====
   const bonsaiPlants = [
     { id: "ip-028", name: "2-Step Lucky Bamboo", price: 250, subcategory: "Bonsai" },
     { id: "ip-029", name: "3-Step Lucky Bamboo", price: 350, subcategory: "Bonsai" },
@@ -107,7 +115,11 @@ const getAllSearchableData = (): SearchItem[] => {
     { id: "ip-090", name: "Dwarf Jade", price: 7000, subcategory: "Bonsai" },
   ];
 
-  // INDOOR PLANTS - Succulents (16 items)
+  bonsaiPlants.forEach(plant => {
+    allItems.push({ ...plant, category: "Indoor Plants", link: `/indoor-plants?id=${plant.id}` });
+  });
+
+  // ===== INDOOR PLANTS - SUCCULENTS (16 items) =====
   const succulentPlants = [
     { id: "ip-032", name: "Christmas Cactus", price: 250, subcategory: "Succulents" },
     { id: "ip-033", name: "Crassula Yellow", price: 250, subcategory: "Succulents" },
@@ -127,16 +139,11 @@ const getAllSearchableData = (): SearchItem[] => {
     { id: "ip-091", name: "Crassula Ovata - Jade Plant", price: 349, subcategory: "Succulents" },
   ];
 
-  // Add all indoor plants
-  [...foliagePlants, ...floweringPlants, ...bonsaiPlants, ...succulentPlants].forEach(plant => {
-    allItems.push({
-      ...plant,
-      category: "Indoor Plants",
-      link: `/indoor-plants?id=${plant.id}`
-    });
+  succulentPlants.forEach(plant => {
+    allItems.push({ ...plant, category: "Indoor Plants", link: `/indoor-plants?id=${plant.id}` });
   });
 
-  // POTS - Ceramic (45 items)
+  // ===== CERAMIC POTS (45 items) =====
   const ceramicPots = [
     { id: "pot-001", name: "Autumn Leaf Beige", price: 1099 },
     { id: "pot-002", name: "Blue Blossom Cream", price: 1099 },
@@ -186,14 +193,10 @@ const getAllSearchableData = (): SearchItem[] => {
   ];
 
   ceramicPots.forEach(pot => {
-    allItems.push({
-      ...pot,
-      category: "Ceramic Pots",
-      link: `/pots?category=Ceramic&id=${pot.id}`
-    });
+    allItems.push({ ...pot, category: "Ceramic Pots", link: `/pots?category=Ceramic&id=${pot.id}` });
   });
 
-  // POTS - Plastic (showing key ones)
+  // ===== PLASTIC POTS (showing key ones - 10 representative items) =====
   const plasticPots = [
     { id: "pot-046", name: "6 Inch ORCHID POT", price: 49 },
     { id: "pot-047", name: "8 Inch POT", price: 79 },
@@ -208,14 +211,10 @@ const getAllSearchableData = (): SearchItem[] => {
   ];
 
   plasticPots.forEach(pot => {
-    allItems.push({
-      ...pot,
-      category: "Plastic Pots",
-      link: `/pots?category=Plastic&id=${pot.id}`
-    });
+    allItems.push({ ...pot, category: "Plastic Pots", link: `/pots?category=Plastic&id=${pot.id}` });
   });
 
-  // POTS - Other categories
+  // ===== OTHER POTS (Terracotta, Fiber, Metal, Hanging) =====
   const otherPots = [
     // Terracotta
     { id: "pot-t20", name: "4 Inch POT WITH PLATES", price: 180, category: "Terracotta Pots" },
@@ -238,13 +237,10 @@ const getAllSearchableData = (): SearchItem[] => {
   ];
 
   otherPots.forEach(pot => {
-    allItems.push({
-      ...pot,
-      link: `/pots?category=${pot.category.replace(' Pots', '')}&id=${pot.id}`
-    });
+    allItems.push({ ...pot, link: `/pots?category=${pot.category.replace(' Pots', '')}&id=${pot.id}` });
   });
 
-  // ACCESSORIES
+  // ===== ACCESSORIES =====
   const accessories = [
     // Watering
     { id: "acc-001", name: "Metal Spray Bottle", price: 299, category: "Watering", subcategory: "Watering" },
@@ -266,20 +262,31 @@ const getAllSearchableData = (): SearchItem[] => {
   ];
 
   accessories.forEach(acc => {
-    allItems.push({
-      ...acc,
-      link: `/accessories?category=${acc.subcategory}&id=${acc.id}`
-    });
+    allItems.push({ ...acc, link: `/accessories?category=${acc.subcategory}&id=${acc.id}` });
   });
 
-  // CORPORATE GIFTING
+  // ===== CORPORATE GIFTING =====
   const corporateGifting = [
     { id: "cg-1", name: "Cera Plastic Pot with Aglonema Red Valentine", price: 499 },
     { id: "cg-2", name: "Cera Plastic Pot with Aglonema", price: 499 },
     { id: "cg-3", name: "Ceramic Sweet Home Orange Pot with Crassula Red", price: 599 },
     { id: "cg-4", name: "Gold Metal Pot with Fern", price: 699 },
     { id: "cg-5", name: "Vertical Ribbed Planter with Anthurium", price: 799 },
+    { id: "cg-6", name: "Cera Plastic Pot with Singonium Pink", price: 499 },
+    { id: "cg-7", name: "Ceramic Sweet Home Blue Pot with Aglonema Red Valentine", price: 599 },
+    { id: "cg-8", name: "Ceramic Sweet Home White Pot with Aglonema Red Valentine", price: 599 },
+    { id: "cg-9", name: "Coir 4 Inch Pot with Baby Palm", price: 449 },
+    { id: "cg-10", name: "Dandelion and Deer Motif Pot with Neon Pothos", price: 549 },
+    { id: "cg-11", name: "Leaf-Embossed Ceramic Terracotta White Leaf Pot", price: 399 },
+    { id: "cg-12", name: "Metal Cage Pot with Baby Palm", price: 749 },
+    { id: "cg-13", name: "Mini Misa 4.5 Painted Pot", price: 349 },
+    { id: "cg-14", name: "Stella Plastic Pot with Singonium White", price: 449 },
+    { id: "cg-15", name: "Terracotta Small Pot with Syngonium Pink", price: 349 },
+    { id: "cg-16", name: "Terracotta Small Pot with Syngonium Green", price: 349 },
+    { id: "cg-17", name: "Terracotta 8 Inch Pot with Philodendron Green", price: 599 },
+    { id: "cg-18", name: "Vertical Ribbed Planter with Poinsettia Variegated", price: 799 },
   ];
+
 
   corporateGifting.forEach(gift => {
     allItems.push({
