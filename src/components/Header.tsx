@@ -195,8 +195,8 @@ const Header = () => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        {/* Search Bar - Hidden on mobile, visible on desktop */}
-        <div className="hidden lg:flex flex-1 max-w-md mx-4">
+        {/* Search Bar - Visible on all screens */}
+        <div className="flex flex-1 max-w-xs sm:max-w-sm lg:max-w-md mx-2 sm:mx-4">
           <SearchBar />
         </div>
 
@@ -284,11 +284,6 @@ const Header = () => {
                       <X className="h-5 w-5" />
                     </Button>
                   </SheetClose>
-                </div>
-
-                {/* Mobile Search Bar */}
-                <div className="px-4 py-4 border-b border-border">
-                  <SearchBar />
                 </div>
 
                 <div className="flex-1 overflow-y-auto py-4">
