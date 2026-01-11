@@ -353,14 +353,12 @@ export const SearchBar = () => {
 
     const searchTerm = searchQuery.toLowerCase();
     
-    // Filter data based on search query
     const filtered = allData.filter((item) =>
       item.name.toLowerCase().includes(searchTerm) ||
       item.category.toLowerCase().includes(searchTerm) ||
       (item.subcategory && item.subcategory.toLowerCase().includes(searchTerm))
     );
 
-    // Group by category
     const grouped: { [key: string]: SearchItem[] } = {};
     filtered.forEach((item) => {
       if (!grouped[item.category]) {
@@ -369,11 +367,10 @@ export const SearchBar = () => {
       grouped[item.category].push(item);
     });
 
-    // Convert to array and limit items per category
     const groupedArray: GroupedResults[] = Object.entries(grouped).map(([category, items]) => ({
       category,
       categoryLink: getCategoryLink(category),
-      items: items.slice(0, 5), // Show up to 5 items per category
+      items: items.slice(0, 5),
     }));
 
     setGroupedResults(groupedArray);
@@ -389,7 +386,6 @@ export const SearchBar = () => {
   const handleResultClick = (item: SearchItem) => {
     setIsOpen(false);
     setSearchQuery("");
-    // Pass the complete product data to the product page
     navigate(item.link, { state: { product: item } });
   };
 
@@ -418,7 +414,8 @@ export const SearchBar = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="w-full pl-8 md:pl-10 pr-8 md:pr-10 py-2 md:py-2.5 bg-white border border-gray-200 rounded-full text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all shadow-sm hover:shadow-md"
+          style={{ fontSize: '16px' }}
+          className="w-full pl-8 md:pl-10 pr-8 md:pr-10 py-2 md:py-2.5 bg-white border border-gray-200 rounded-full text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all shadow-sm hover:shadow-md"
         />
         {searchQuery && (
           <button
@@ -439,10 +436,8 @@ export const SearchBar = () => {
               {totalResults} result{totalResults !== 1 ? "s" : ""} found
             </p>
 
-            {/* Grouped Results */}
             {groupedResults.map((group, groupIndex) => (
               <div key={group.category} className={groupIndex > 0 ? "mt-4" : ""}>
-                {/* Category Header - Clickable */}
                 <button
                   onClick={() => handleCategoryClick(group.categoryLink)}
                   className="w-full flex items-center justify-between px-2 md:px-3 py-2 hover:bg-green-50 rounded-lg transition-colors group"
@@ -458,7 +453,6 @@ export const SearchBar = () => {
                   <ArrowRight className="h-3 w-3 text-green-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
 
-                {/* Category Items */}
                 <div className="mt-1 space-y-1">
                   {group.items.map((result) => (
                     <button
@@ -485,7 +479,6 @@ export const SearchBar = () => {
                   ))}
                 </div>
 
-                {/* Divider between categories */}
                 {groupIndex < groupedResults.length - 1 && (
                   <div className="border-t border-gray-100 mt-3" />
                 )}
@@ -509,13 +502,9 @@ export const SearchBar = () => {
 
 export default SearchBar;
 
-// ===========================
-// EXPORT HELPER FOR GETTING PRODUCT BY ID
-// ===========================
 export const getProductById = (id: string): SearchItem | null => {
   const allData = getAllSearchableData();
   return allData.find(item => item.id === id) || null;
 };
 
-// Export the type for use in other components
 export type { SearchItem };
