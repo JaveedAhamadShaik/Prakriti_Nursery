@@ -195,9 +195,9 @@ const getAllSearchableData = (): SearchItem[] => {
 
   // POTS - Plastic (showing key ones)
   const plasticPots = [
-    { id: "pot-044", name: "6 Inch ORCHID POT", price: 49 },
-    { id: "pot-045", name: "8 Inch POT", price: 79 },
-    { id: "pot-046", name: "10 Inch POT", price: 99 },
+    { id: "pot-046", name: "6 Inch ORCHID POT", price: 49 },
+    { id: "pot-047", name: "8 Inch POT", price: 79 },
+    { id: "pot-048", name: "10 Inch POT", price: 99 },
     { id: "pot-056", name: "CLEAR SELF WATERING 4 POT", price: 199 },
     { id: "pot-057", name: "CLEAR SELF WATERING 6 POT", price: 249 },
     { id: "pot-058", name: "CLEAR SELF WATERING 8 Inch POT", price: 299 },
@@ -386,10 +386,11 @@ export const SearchBar = () => {
     setIsOpen(false);
   };
 
-  const handleResultClick = (link: string) => {
+  const handleResultClick = (item: SearchItem) => {
     setIsOpen(false);
     setSearchQuery("");
-    navigate(link);
+    // Pass the complete product data to the product page
+    navigate(item.link, { state: { product: item } });
   };
 
   const handleCategoryClick = (categoryLink: string) => {
@@ -400,29 +401,29 @@ export const SearchBar = () => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && groupedResults.length > 0 && groupedResults[0].items.length > 0) {
-      handleResultClick(groupedResults[0].items[0].link);
+      handleResultClick(groupedResults[0].items[0]);
     }
   };
 
   const totalResults = groupedResults.reduce((acc, group) => acc + group.items.length, 0);
 
   return (
-    <div className="relative w-full max-w-md" ref={searchRef}>
+    <div className="relative w-full md:max-w-md" ref={searchRef}>
       {/* Search Input */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <Search className="absolute left-2 md:left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
         <input
           type="text"
-          placeholder="Search plants, pots, accessories..."
+          placeholder="Search..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-full text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all shadow-sm hover:shadow-md"
+          className="w-full pl-8 md:pl-10 pr-8 md:pr-10 py-2 md:py-2.5 bg-white border border-gray-200 rounded-full text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all shadow-sm hover:shadow-md"
         />
         {searchQuery && (
           <button
             onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+            className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
             aria-label="Clear search"
           >
             <X className="h-4 w-4" />
@@ -432,10 +433,10 @@ export const SearchBar = () => {
 
       {/* Search Results Dropdown - Grouped by Category */}
       {isOpen && groupedResults.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl max-h-[500px] overflow-y-auto z-50">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl max-h-[400px] md:max-h-[500px] overflow-y-auto z-50 w-screen md:w-auto -ml-4 md:ml-0 px-2 md:px-0">
           <div className="p-2">
-            <p className="text-xs text-gray-500 px-3 py-2 font-medium">
-              {totalResults} result{totalResults !== 1 ? "s" : ""} found in {groupedResults.length} {groupedResults.length === 1 ? "category" : "categories"}
+            <p className="text-xs text-gray-500 px-2 md:px-3 py-2 font-medium">
+              {totalResults} result{totalResults !== 1 ? "s" : ""} found
             </p>
 
             {/* Grouped Results */}
@@ -444,7 +445,7 @@ export const SearchBar = () => {
                 {/* Category Header - Clickable */}
                 <button
                   onClick={() => handleCategoryClick(group.categoryLink)}
-                  className="w-full flex items-center justify-between px-3 py-2 hover:bg-green-50 rounded-lg transition-colors group"
+                  className="w-full flex items-center justify-between px-2 md:px-3 py-2 hover:bg-green-50 rounded-lg transition-colors group"
                 >
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-green-600 uppercase tracking-wider">
@@ -462,12 +463,12 @@ export const SearchBar = () => {
                   {group.items.map((result) => (
                     <button
                       key={result.id}
-                      onClick={() => handleResultClick(result.link)}
-                      className="w-full text-left px-3 py-2.5 hover:bg-green-50 rounded-lg transition-colors group ml-2"
+                      onClick={() => handleResultClick(result)}
+                      className="w-full text-left px-2 md:px-3 py-2 md:py-2.5 hover:bg-green-50 rounded-lg transition-colors group ml-1 md:ml-2"
                     >
-                      <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center justify-between gap-2 md:gap-3">
                         <div className="flex-1 min-w-0">
-                          <p className="font-medium text-sm text-gray-900 group-hover:text-green-600 transition-colors truncate">
+                          <p className="font-medium text-xs md:text-sm text-gray-900 group-hover:text-green-600 transition-colors truncate">
                             {result.name}
                           </p>
                           {result.subcategory && (
@@ -475,7 +476,7 @@ export const SearchBar = () => {
                           )}
                         </div>
                         {result.price && (
-                          <p className="text-sm font-semibold text-green-600 flex-shrink-0">
+                          <p className="text-xs md:text-sm font-semibold text-green-600 flex-shrink-0">
                             ₹{result.price}
                           </p>
                         )}
@@ -507,3 +508,14 @@ export const SearchBar = () => {
 };
 
 export default SearchBar;
+
+// ===========================
+// EXPORT HELPER FOR GETTING PRODUCT BY ID
+// ===========================
+export const getProductById = (id: string): SearchItem | null => {
+  const allData = getAllSearchableData();
+  return allData.find(item => item.id === id) || null;
+};
+
+// Export the type for use in other components
+export type { SearchItem };
