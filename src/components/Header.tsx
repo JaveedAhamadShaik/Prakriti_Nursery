@@ -6,8 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { ThemeToggle } from "./ThemeToggle";
+import { SearchBar } from "./SearchBar"; // Import the SearchBar component
 import logo from "@/assets/logo.jpg";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -78,11 +79,11 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="container flex h-16 sm:h-20 items-center justify-between px-4 sm:px-6">
+      <div className="container flex h-16 sm:h-20 items-center justify-between gap-2 sm:gap-4 px-4 sm:px-6">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity flex-shrink-0">
           <img src={logo} alt="PRAKRITI NURSERY" className="h-10 w-10 sm:h-12 sm:w-12 rounded-full object-cover" />
-          <span className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-leaf-green hidden xs:block tracking-tight">PRAKRITI NURSERY</span>
+          <span className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-leaf-green hidden xs:block tracking-tight whitespace-nowrap">PRAKRITI NURSERY</span>
         </Link>
         
         {/* Desktop Navigation */}
@@ -194,6 +195,11 @@ const Header = () => {
           </NavigationMenuList>
         </NavigationMenu>
 
+        {/* Search Bar - Hidden on mobile, visible on desktop */}
+        <div className="hidden lg:flex flex-1 max-w-md mx-4">
+          <SearchBar />
+        </div>
+
         {/* Right Side Icons */}
         <div className="flex items-center gap-1 sm:gap-2">
           {/* Instagram Icon */}
@@ -278,6 +284,11 @@ const Header = () => {
                       <X className="h-5 w-5" />
                     </Button>
                   </SheetClose>
+                </div>
+
+                {/* Mobile Search Bar */}
+                <div className="px-4 py-4 border-b border-border">
+                  <SearchBar />
                 </div>
 
                 <div className="flex-1 overflow-y-auto py-4">
