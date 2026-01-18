@@ -47,7 +47,6 @@ const Header = () => {
     { title: "Ceramic", href: "/pots?category=Ceramic" },
     { title: "Plastic", href: "/pots?category=Plastic" },
     { title: "Metal", href: "/pots?category=Metal" },
-    { title: "Fiber", href: "/pots?category=Fiber" },
     { title: "Rotomold", href: "/pots?category=Rotomold" },
     { title: "Terracotta", href: "/pots?category=Terracotta" },
     { title: "Hanging Pots", href: "/pots?category=Hanging" },

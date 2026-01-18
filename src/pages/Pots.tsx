@@ -19,7 +19,6 @@ const Pots = () => {
     "All",
     "Ceramic",
     "Plastic",
-    "Fiber",
     "Terracotta",
     "Metal",
     "Rotomold",
